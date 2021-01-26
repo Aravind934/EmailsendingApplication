@@ -1,0 +1,18 @@
+
+<form [formGroup]="mailForm">
+<div class="container">
+    <div *ngIf="result" [ngClass]="result.success ? 'alert alert-primary' :'alert alert-danger' " role="alert">
+        {{result.msg}}
+      </div>
+    <h2>Email Sent Application</h2>
+    <br>
+    <label for="to">To:</label>
+    <input type="email" name="email" class="form-control w-50" formControlName="to">
+    <label for="subject">Subject:</label>
+    <input type="text" name="subject" class="form-control w-50" formControlName="subject">
+    <label for="to">Text:</label>
+    <textarea name="text" cols="30" rows="10" class="form-control w-50" formControlName="text"></textarea>
+     selectFile: <input type="file" name="file" (change)="selectFile($event)">
+    <button class="btn btn-success" (click)="sendEmail()">Send</button>
+</div>
+</form>

@@ -1,7 +1,10 @@
 const express = require('express')
 var nodemailer = require('nodemailer');
+const fs = require('fs')
 const multer = require('multer')
+const cors = require('cors')
 var app = express()
+app.use(cors())
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.get('/',(req,res)=>{
@@ -22,7 +25,7 @@ const upload = multer({
 }).single('file')
 
 
-app.get('/sendemail',(req,res)=>{
+app.post('/sendemail',(req,res)=>{
     upload(req,res,async(err)=>{
        if(err){
            res.json({
@@ -57,6 +60,7 @@ app.get('/sendemail',(req,res)=>{
                   msg:error.message 
               })
             } else {
+             //fs.unlink(req.file.path);
               res.json({
                   success:true,
                   msg:'success'
