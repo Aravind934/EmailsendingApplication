@@ -7,8 +7,9 @@ var app = express()
 app.use(cors())
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
+app.use(express.static('public'))
 app.get('/',(req,res)=>{
-    res.send('hello')
+    res.sendFile('index.js')
 })
 const storage = multer.diskStorage({
     destination:(req,file,cb)=>{
